@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jonrushing/Challenge-9-ReadMe-Generator/issues"
   },
-  "homepage": "https://github.com/jonrushing/Challenge-9-ReadMe-Generator#readme"
+  "homepage": "https://github.com/jonrushing/Challenge-9-ReadMe-Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }
