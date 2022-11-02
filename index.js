@@ -44,7 +44,7 @@ const questions = [
     {   name: 'license',
         type: 'list',
         message: 'Please select a license for this project?',
-        choices: ['MIT','Mozilla Public License 2.0','Apache License 2.0']
+        choices: ['MIT','Mozilla Public License 2.0','Apache License 2.0','None']
     },
     {   name: 'gitUser',
         type: 'input',
@@ -59,15 +59,18 @@ const questions = [
 
 // TODO: Create a function to write README file
 function createReadME() {
-fs.writeFile('README.md', data, (err) =>
+fs.writeFile('README.md', content, (err) =>
 err ? console.error(err) : console.log("ReadMe Created!")) 
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    inquire.prompt(questions)
-    .then(generateMarkdown)
-    .then(createReadME)
+    inquire.prompt(questions).then((data) => {
+        generateMarkdown(data).then((content) => {
+        createReadME(content)
+        })
+    });
+    
 }
 
 // Function call to initialize app
