@@ -58,20 +58,21 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function createReadME() {
-fs.writeFile('README.md', content, (err) =>
-err ? console.error(err) : console.log("ReadMe Created!")) 
+function createReadME(name, input) {
+fs.writeFile(name, input, (err) =>
+err ? console.error(err) : console.log("Your ReadMe has been Created!")) 
 }
 
 // TODO: Create a function to initialize app
 function init() {
     inquire.prompt(questions).then((data) => {
-        generateMarkdown(data).then((content) => {
-        createReadME(content)
-        })
-    });
+        const content = generateMarkdown(data);
+        createReadME('GeneratedREADME.md', content)
+    })
+};
+
     
-}
+
 
 // Function call to initialize app
 init();
