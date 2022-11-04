@@ -21,22 +21,10 @@ const questions = [
         type: 'input',
         message: 'How does the user use this project?',
     },
-    {   name: 'ifContribute',
-        type: 'confirm',
-        message: 'Can others contribute to this project?',
-        default: true
-    },
     {   name: 'contribute',
         type: 'input',
         message: 'How can others contribute to this project?',
-        when:({ifContribute}) => {
-        if(ifContribute) {
-            return true;
-        } else {
-            return false;
-        }
-        }
-    },
+    }, 
     {   name: 'test',
         type: 'input',
         message: 'How can a user test this project?',

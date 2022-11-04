@@ -13,69 +13,80 @@ const licenseOptions = {
                                   
   }
 
-
-
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const badge = (data.license === !"None") ?
-    licenseOptions[data.license].badge : ""
-
-
+const badge = (data) => {
+  if(data !== 'None'){
+    return licenseOptions[data].badge
+} else {
+  return ""
+}
+}
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-const licenseLink = (data.license === !"None") ?
-licenseOptions[data.license].Link : ""
+const licenseLink = (data) => {
+  if(data !== 'None'){
+    return licenseOptions[data].Link 
+  } else {
+    return ""
+  }
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-const sectionTOC = (data.license === !"None") ? 
-`
-- [License](#license)
-` : ""
+const sectionTOC = (data) =>{
+  if(data !== 'None'){
+    return `
+  - [License](#license)`
+} else {
+      return ""
+    }
+}  
 
-const section = (data.license === !"None") ?
-`## License <a name="license"></a>
-
-${licenseLink}` : ""
+const section = (data) => {
+  if(data !== 'None'){
+    return `
+  
+  ## License <a name="license"></a>
+  [For more information about the license click here](${licenseLink(data)})`
+  } else {
+    return ""
+  }
+} 
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
-${badge}
-
+${badge(data.license)}
   ## Table-of-Contents
   - [Description](#description)
-  - [Installation](#installation)${sectionTOC}
+  - [Installation](#installation)${sectionTOC(data.license)}
   - [Usage](#usage)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
+  - [Contribution](#contributing)
+  - [Testing](#tests)
   - [Questions](#questions)
   
   ## Description <a name="description"></a>
   ${data.description}
 
   ## Installation <a name="installation"></a>
-  ${data.install}
-
-
-  ${section}
+  ${data.install}${section(data.license)}
   
   ## Usage <a name="usage"></a>
-  
   ${data.use}
-  
-  ## Contributing <a name="contributing"></a>
-  
- 
-  ## Tests <a name="tests"></a>
-  
+
+  ## Contribution <a name="contributing"></a>
+  ${data.contribute}
+
+  ## Testing <a name="tests"></a>
   ${data.test}
 
   ## Questions <a name="questions"></a>
   If you have any questions at all feel free to contact me here or by email:
+  
   [GitHub](https://github.com/${data.gitUser})
-  [Email: ${data.email}](mailto:${data.email})
 
+  [Email: ${data.email}](mailto:${data.email})
 `;
 }
 
